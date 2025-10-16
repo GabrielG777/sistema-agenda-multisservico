@@ -193,8 +193,3 @@ Cada módulo (ex: Agenda, Usuário, Serviço) deve seguir este padrão:
   /repositories
     AgendaRepository.js
 ```
-Esse README está pronto pra colar direto no repositório — limpo, técnico e dentro do que você realmente está implementando.  
-
-Quer que eu monte a **estrutura inicial de pastas e arquivos** (com `index.js`, `controller`, `service`, `repository`) pra já deixar o projeto no formato certo também?
-```
-
