@@ -1,34 +1,46 @@
-// src/routes/app.routes.jsx
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
-// Importe suas telas
-import { Agendamento } from '../pages/empresaPage'; // Sua tela atual
-// import { Login } from '../pages/Login'; // Exemplo de outra tela
+import { AgendamentoStack } from "./stack.agendamento.routes";
+import { HistoricoStack } from "./stack.historico.routes";
+import {DetalhesAgendamento} from "../components/DetalhesAgendamento";
 
-// Cria a instância do Stack Navigator
-const { Navigator, Screen } = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-// A rota principal do seu aplicativo (após o login, se houver)
 export function AppRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }}>
-      
-      {/* 1. Rota de Agendamento */}
-      <Screen 
-        name="AgendamentoPrincipal" 
-        component={Agendamento} 
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+
+        drawerStyle: {
+          backgroundColor: "#09191F",   // fundo escuro
+          width: 260,
+        },
+
+        drawerActiveTintColor: "#F75306", // item selecionado = laranja padrão
+        drawerInactiveTintColor: "#FFFFFF", // itens normais = branco
+
+        drawerActiveBackgroundColor: "rgba(255, 255, 255, 0.1)", // leve brilho
+
+        drawerLabelStyle: {
+          fontSize: 16,
+          fontWeight: "500",
+        },
+      }}
+    >
+      <Drawer.Screen
+        name="Agendamento"
+        component={AgendamentoStack}
+        options={{ drawerLabel: "Agendamento" }}
       />
 
-      {/* 2. Rota de Detalhes do Agendamento (exemplo futuro) */}
-      <Screen 
-        name="DetalhesAgendamento" 
-        component={Agendamento} 
-        options={{ headerShown: true, title: 'Detalhes' }} // Exibe o cabeçalho
+      <Drawer.Screen
+        name="Historico"
+        component={HistoricoStack}
+        options={{ drawerLabel: "Histórico" }}
       />
-      
-      {/* 3. Outras Rotas (Serviços, Dashboard, etc.) */}
-      
-    </Navigator>
+
+    </Drawer.Navigator>
   );
 }
